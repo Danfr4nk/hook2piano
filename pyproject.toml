@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hook2piano"
+version = "0.1.0"
+description = "TheoryTab to one-page piano sheet: LH chords + RH melody from Hooktheory analyses"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "Dan Frank"}]
+dependencies = ["requests"]
+
+[project.scripts]
+hook2piano = "hook2piano.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["hook2piano*"]
