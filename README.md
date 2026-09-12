@@ -2,6 +2,10 @@
 
 TheoryTab → one-page piano sheet. Fetches a [Hooktheory](https://www.hooktheory.com/theorytab) chord+melody analysis and renders it as a printable grand-staff score: **left hand plays the chords, right hand plays the melody**, with chord symbols and Roman numerals on top.
 
+## 📱 Web app (phone-friendly)
+
+**https://danfr4nk.github.io/hook2piano/** — paste a TheoryTab URL or tab ID, pick a section, get the score. The full Python engine runs in your browser via Pyodide; the tab JSON comes straight from Hooktheory's public API (CORS-open). Nothing to install.
+
 ## How it works
 
 1. **Fetch** — a TheoryTab song page embeds one player per analyzed section (`TheoryTabs("tab-…")`). Each player exposes its Hookpad project data through Hooktheory's public, unauthenticated project endpoint (`/v1/songs/public/<tab_id>`), which returns the full chord/note/key/tempo/meter JSON.

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>hook2piano — TheoryTab to piano sheet</title>
+<style>
+  :root { color-scheme: light; }
+  body { font-family: Georgia, serif; margin: 0; padding: 14px; color: #111; background: #fff; }
+  h1 { font-size: 22px; margin: 0 0 4px; }
+  .sub { font-size: 13px; color: #666; margin-bottom: 12px; }
+  .row { display: flex; gap: 8px; margin-bottom: 10px; }
+  input[type=text] {
+    flex: 1; font-size: 16px; padding: 10px 12px;
+    border: 1px solid #bbb; border-radius: 8px; min-width: 0;
+  }
+  button {
+    font-size: 16px; padding: 10px 16px; border-radius: 8px;
+    border: 1px solid #333; background: #111; color: #fff; cursor: pointer;
+  }
+  button:disabled { opacity: .45; cursor: default; }
+  button.ghost { background: #fff; color: #111; }
+  #status { font-size: 13px; color: #555; min-height: 20px; margin-bottom: 8px; }
+  #chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+  #chips button { font-size: 14px; padding: 8px 12px; }
+  #chips button.active { background: #fff; color: #111; border-width: 2px; }
+  #score { overflow-x: auto; }
+  #score svg { max-width: none; }
+  .actions { display: flex; gap: 8px; margin: 12px 0; }
+  .hint { font-size: 12px; color: #888; margin-top: 14px; line-height: 1.5; }
+  .section { page-break-after: always; }
+  .section:last-child { page-break-after: avoid; }
+  .prog { font-size: 12px; color: #555; margin: 0 0 8px; }
+  #score h1 { font-size: 20px; }
+  #score h2 { font-size: 14px; font-weight: normal; color: #444; margin: 0 0 8px; }
+  @media print {
+    .noprint { display: none !important; }
+    body { padding: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="noprint">
+  <h1>hook2piano</h1>
+  <div class="sub">TheoryTab &rarr; printable piano sheet (LH chords, RH melody)</div>
+  <div class="row">
+    <input id="url" type="text" inputmode="url" autocomplete="off" autocapitalize="off"
+           placeholder="Paste a TheoryTab URL or tab ID">
+    <button id="load">Load</button>
+  </div>
+  <div id="status"></div>
+  <div id="chips"></div>
+  <div class="actions" id="actions" style="display:none">
+    <button id="print" class="ghost">Print / PDF</button>
+  </div>
+  <div class="hint">
+    Paste a full <b>theorytab/view/&hellip;</b> link to pick from its sections, or a bare
+    tab ID (e.g. <b>nZgWr__wmry</b>). First load downloads the Python engine (~10&nbsp;MB),
+    then everything runs on your phone.
+  </div>
+</div>
+<div id="score"></div>
+
+<script src="vendor/vexflow.js"></script>
+<script src="render.js"></script>
+<script src="https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
